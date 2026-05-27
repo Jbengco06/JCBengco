@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IMS Level 2</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="ims_lvl2.css" />
+</head>
+<body>
+  <div class="header">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div class="add-item" id="openAddModal">
+        <span>+</span>
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search" />
+      </div>
+    </div>
+    <div class="nav-links">
+      <button id="notificationBtn" type="button"><span>Notifications</span></button>
+    </div>
+  </div>
+
+  <section class="level-bar_level2">
+    <a href="ims.html"><button class="back-btn"><i class="fas fa-arrow-left"></i></button></a>
+    <span>Level 2</span>
+  </section>
+
+  <!-- Add Item Modal -->
+  <div class="modal-overlay" id="addItemModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add Item</h2>
+        <span class="close-btn" id="closeModalBtn">&times;</span>
+      </div>
+      <div class="modal-body">
+        <label for="itemNameInput">Item Name</label>
+        <input type="text" id="itemNameInput" name="itemNameInput" placeholder="Enter item name" />
+      
+        <div class="quantity-row">
+          <div class="input-group">
+            <label for="itemQtyInput">Quantity</label>
+            <input type="number" id="itemQtyInput" name="itemQtyInput" min="0" placeholder="0" />
+          </div>
+          
+          <div class="input-group">
+            <label for="maxQuantity">Maximum Quantity</label>
+            <input type="number" id="maxQuantity" name="maxQuantity" placeholder="Enter maximum quantity" />
+          </div>
+        </div>
+      
+        <label for="itemLevelCategory">Level</label>
+        <select id="itemLevelCategory" name="itemLevelCategory">
+          <option value="Level_1">Level 1</option>
+          <option value="Level_2">Level 2</option>
+          <option value="Level_3">Level 3</option>
+        </select>
+      
+        <label for="itemCategoryInput">Category</label>
+        <select id="itemCategoryInput" name="itemCategoryInput">
+          <option value="Beverages">Beverages</option>
+          <option value="Raw Materials">Raw Materials</option>
+          <option value="Store Essentials">Store Essentials</option>
+        </select>
+      </div>
+      
+      
+      <div class="modal-footer">
+        <button id="addBtn">Add</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Item Modal (same as Add, but pre-filled with data) -->
+  <div class="modal-overlay" id="editItemModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Edit Item</h2> 
+        <span class="close-btn" id="closeEditModalBtn">&times;</span>
+      </div>
+      <div class="modal-body">
+        <label for="editItemNameInput">Item Name</label>
+        <input type="text" id="editItemNameInput" name="editItemNameInput" placeholder="Enter item name" />
+      
+        <div class="quantity-row">
+          <div class="input-group">
+            <label for="editItemQtyInput">Quantity</label>
+            <input type="number" id="editItemQtyInput" name="editItemQtyInput" min="0" placeholder="0" />
+          </div>
+          
+          <div class="input-group">
+            <label for="editMaxQuantity">Maximum Quantity</label>
+            <input type="number" id="editMaxQuantity" name="editMaxQuantity" placeholder="Enter maximum quantity" />
+          </div>
+        </div>
+      
+        <label for="editItemLevelCategory">Level</label>
+        <select id="editItemLevelCategory" name="editItemLevelCategory">
+          <option value="Level_1">Level 1</option>
+          <option value="Level_2">Level 2</option>
+          <option value="Level_3">Level 3</option>
+        </select>
+      
+        <label for="editItemCategoryInput">Category</label>
+        <select id="editItemCategoryInput" name="editItemCategoryInput">
+          <option value="Beverages">Beverages</option>
+          <option value="Raw Materials">Raw Materials</option>
+          <option value="Store Essentials">Store Essentials</option>
+        </select>
+      </div>
+      
+      
+      <div class="modal-footer">
+        <button id="editBtn">Update</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="inventory">
+    <h2>INVENTORY</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Category</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="level2-body"></tbody>
+    </table>
+  </div>
+
+  <script src="ims_lvl2.js" defer></script>
+  <script>
+    let allLevel2Items = [];
+    
+    function loadLevelItems() {
+        fetch('inventory_operations.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'action=get'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Only show Level_2 items
+                allLevel2Items = data.data.filter(item => item.level === 'Level_2');
+                displayLevelItems(allLevel2Items);
+            } else {
+                alert('Error loading items: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error loading items. Check console for details.');
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadLevelItems();
+        // Add search functionality
+        const searchInput = document.querySelector('.search-bar input');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const searchText = this.value.trim().toLowerCase();
+                const filtered = allLevel2Items.filter(item =>
+                    item.name.toLowerCase().includes(searchText) ||
+                    item.category.toLowerCase().includes(searchText)
+                );
+                displayLevelItems(filtered);
+            });
+        }
+    });
+
+    function calculateStatus(quantity, maxQuantity) {
+        const percent = (quantity / maxQuantity) * 100;
+        if (percent <= 30) {
+            return { statusText: "Low Stock", statusClass: "low" };
+        } else if (percent <= 100) {
+            return { statusText: "In Stock", statusClass: "medium" };
+        } else {
+            return { statusText: "Over Stock", statusClass: "high" };
+        }
+    }
+
+    function displayLevelItems(items) {
+        const tbody = document.getElementById('level2-body');
+        tbody.innerHTML = '';
+
+        if (!items || items.length === 0) {
+            const row = document.createElement('tr');
+            row.innerHTML = '<td colspan="5" style="text-align: center;">No items found</td>';
+            tbody.appendChild(row);
+            return;
+        }
+
+        items.forEach(item => {
+            const { statusText, statusClass } = calculateStatus(item.quantity, item.max_quantity);
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.name}</td>
+                <td>
+                    <button class="minus-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                    <input type="number" min="0" value="${item.quantity}" style="width: 50px; text-align: center;"
+                        onchange="manualQuantityUpdate(${item.id}, this.value)"
+                        onkeydown="if(event.key==='Enter'){manualQuantityUpdate(${item.id}, this.value)}">
+                    <button class="add-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                </td>
+                <td>${item.category}</td>
+                <td><span class="status ${statusClass}">${statusText}</span></td>
+                <td>
+                    <button onclick="editItem(${item.id})" class="edit-btn">✏️</button>
+                    <button onclick="deleteItem(${item.id})" class="delete-btn">🗑️</button>
+                </td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    function adjustQuantity(element, change) {
+      const qtySpan = element.parentElement.querySelector(".qty");
+      let currentQty = parseInt(qtySpan.textContent);
+      currentQty = Math.max(0, currentQty + change);
+      qtySpan.textContent = currentQty;
+    }
+
+    // Modal functionality for Add Item
+    const addModal = document.getElementById('addItemModal');
+    const openAddModal = document.getElementById('openAddModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    openAddModal.addEventListener('click', () => {
+        addModal.style.display = 'flex';
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+        addModal.style.display = 'none';
+    });
+
+    // Add item functionality
+    function addItem() {
+      const name = document.getElementById("itemNameInput").value.trim();
+      const qty = parseInt(document.getElementById("itemQtyInput").value);
+      const category = document.getElementById("itemCategoryInput").value;
+
+      if (!name || isNaN(qty) || qty < 0) {
+        alert("Please enter valid item details.");
+        return;
+      }
+
+      const tbody = document.getElementById("level2-body");
+      const row = document.createElement("tr");
+
+      // Status logic
+      let statusClass = "over";
+      let statusText = "Over Stocks";
+      if (qty < 5) {
+        statusClass = "low";
+        statusText = "Low Stocks";
+      }
+
+      row.innerHTML = `
+        <td><strong>${name}</strong></td>
+        <td>
+          <span class="minus-btn" onclick="adjustQuantity(this, -1)">-</span>
+          <span class="qty">${qty}</span>
+          <span class="add-btn" onclick="adjustQuantity(this, 1)">+</span>
+        </td>
+        <td><strong>${category}</strong></td>
+        <td><span class="status ${statusClass}">${statusText}</span></td>
+        <td class="actions">
+          <button class="edit-btn">✏️</button>
+          <button class="delete-btn" onclick="this.closest('tr').remove()">🗑️</button>
+        </td>
+      `;
+
+      tbody.appendChild(row);
+      modal.style.display = "none";
+
+      // Reset form fields
+      document.getElementById("itemNameInput").value = "";
+      document.getElementById("itemQtyInput").value = "";
+      document.getElementById("itemCategoryInput").selectedIndex = 0;
+    }
+
+    function editItem(id) {
+        fetch('inventory_operations.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `action=get&id=${id}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const item = data.data;
+                document.getElementById('editItemNameInput').value = item.name;
+                document.getElementById('editItemQtyInput').value = item.quantity;
+                document.getElementById('editMaxQuantity').value = item.max_quantity;
+                document.getElementById('editItemLevelCategory').value = item.level;
+                document.getElementById('editItemCategoryInput').value = item.category;
+
+                const editModal = document.getElementById('editItemModal');
+                editModal.style.display = 'flex';
+
+                // Update button click handler
+                document.getElementById('editBtn').onclick = () => {
+                    const formData = new FormData();
+                    formData.append('action', 'update');
+                    formData.append('id', id);
+                    formData.append('name', document.getElementById('editItemNameInput').value);
+                    formData.append('quantity', document.getElementById('editItemQtyInput').value);
+                    formData.append('maxQuantity', document.getElementById('editMaxQuantity').value);
+                    formData.append('level', document.getElementById('editItemLevelCategory').value);
+                    formData.append('category', document.getElementById('editItemCategoryInput').value);
+
+                    fetch('inventory_operations.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            editModal.style.display = 'none';
+                            loadLevelItems();
+                        }
+                    });
+                };
+            }
+        });
+    }
+
+    // Close Edit Modal
+    document.getElementById('closeEditModalBtn').addEventListener('click', () => {
+        document.getElementById('editItemModal').style.display = 'none';
+    });
+
+    const notificationBtn = document.querySelector('.nav-links span:contains("Notifications")');
+    if (notificationBtn) {
+      notificationBtn.style.cursor = 'pointer';
+      notificationBtn.onclick = function() {
+        window.location.href = 'notification.html';
+      };
+    }
+  </script>
+</body>
+</html>

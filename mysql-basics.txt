@@ -1,0 +1,3 @@
+Project: MySQL Basics
+
+Replace this file with your SQL scripts, exports, or documentation file.

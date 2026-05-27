@@ -1,0 +1,3 @@
+Project: Power Query Data Preparation
+
+Replace this file with your actual project output (e.g., .pbix, .xlsx, .pdf, or .zip).

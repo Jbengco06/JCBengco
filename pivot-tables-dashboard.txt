@@ -1,0 +1,3 @@
+Project: Pivot Tables and Dashboard
+
+Replace this file with your actual project output (e.g., .xlsx, .pdf, screenshot archive, or .zip).

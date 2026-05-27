@@ -1,0 +1,236 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f0d8;
+    margin: 0;
+    padding: 0;
+  }
+  /* HEADER */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #d6d6ab;
+    padding: 10px 20px;
+
+  }
+  .search-bar input {
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+
+  }
+  .nav-links {
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
+  }
+
+  .level-bar_level2 {
+    background-color: #e67e22; 
+    margin: 20px; /* space from the sides */
+    padding: 12px 20px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+      .back-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+      }
+  .inventory {
+    padding: 0 20px 20px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+  }
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ccc;
+    font-weight: bold;
+  }
+  th {
+    background: #e0e0b0;
+  }
+  .status {
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .status.low {
+    background-color: orange;
+  }
+  
+  .status.medium {
+    background-color: green;
+  }
+  
+  .status.high {
+    background-color: #e74c3c;
+  }
+  .actions button {
+    margin: 0 5px;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .edit-btn { background: #f1c40f; border-radius: 8px; border-color: #f1c40f;}
+  .delete-btn { background: #e74c3c; color: white; border-radius: 8px; border-color: #e74c3c;}
+  .add-btn {
+    margin: 0 3px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #2980b9;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 3px;
+
+  }
+  .minus-btn{
+    margin: 0 3px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #2980b9;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 3px;
+
+  }
+  .qty{
+    cursor: pointer;
+
+  }
+  .quantity-btn{
+    background-color: #2980b9;
+    padding: 2px 4px;
+    border-radius: 3px;
+
+  }
+  .add-item {
+    padding: 7px 14px;
+    display: flex;
+    background-color: #27ae60;
+    border-radius: 50%;
+    cursor: pointer;
+    color: black;
+    font-size: 26px;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    box-shadow: 0 2px 8px rgba(39,174,96,0.08);
+  }
+  
+  .add-item span {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+  }
+  .add-btn .minus-btn .qty{
+    gap: 20px;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .modal-content {
+    background: #f8f8dc;
+    padding: 30px;
+    border-radius: 12px;
+    width: 800px;
+    position: relative;
+  }
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-header h2 {
+    margin: 0;
+  }
+  .close-btn {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .inputItem{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .modal-body input,
+  .modal-body select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  .modal-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .modal-footer button {
+    padding: 10px 30px;
+    background: #4b4b1f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .level-bar.level1 { background-color: #e0e0b0; }
+  .level-bar.level2 { background-color: #e67e22; }
+  .level-bar.level3 { background-color: #2980b9; }
+
+  .nav-links button#notificationBtn {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none;
+  padding: 0 8px;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  color: inherit;
+  font: inherit;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-links button#notificationBtn:focus {
+  outline: 2px solid #bdbd8d;
+}
+
+.nav-links button#notificationBtn:hover span {
+  text-decoration: underline;
+}

@@ -3,192 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JCB Portfolio</title>
-  <meta name="description" content="Portfolio website showcasing Enterprise Data Management projects and skills.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <title>Project Files</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #e8ecff;
+      line-height: 1.6;
+    }
+    .wrap {
+      width: min(960px, 92%);
+      margin: 2rem auto 3rem;
+    }
+    h1, h2 {
+      margin: 0 0 0.7rem;
+    }
+    .top-actions {
+      margin-bottom: 1rem;
+    }
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 0.85rem;
+      border-radius: 10px;
+      background: #6ea8fe;
+      color: #071024;
+      text-decoration: none;
+      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+      transition: transform 120ms ease, background 120ms ease;
+    }
+    .back:hover {
+      background: #4f91ff;
+      transform: translateY(-1px);
+    }
+    .back:active {
+      transform: translateY(0);
+    }
+    .project-card {
+      background: #121a33;
+      border: 1px solid #27345f;
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .hidden {
+      display: none;
+    }
+    ul {
+      margin: 0.6rem 0 0;
+      padding-left: 1.2rem;
+    }
+    a.file-link {
+      color: #9ec2ff;
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="#home">JCB Portfolio</a>
-      <div class="header-actions">
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
-        <nav id="navMenu">
-          <a href="#about">About</a>
-          <a href="#education">Education</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <button class="theme-toggle" id="themeToggle" aria-label="Switch color mode">🌙 Dark</button>
-      </div>
+  <div class="wrap">
+    <div class="top-actions">
+      <a class="back" href="../index.html#projects">← Back to Projects</a>
     </div>
-  </header>
+    <h1>Project Files</h1>
+    <p>Open any file below to view your project content.</p>
 
-  <main id="home">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="badge">Software Engineer</p>
-          <h1>Hi, I’m <span class="accent">Janrome</span></h1>
-          <p class="lead">
-            "I develop automated data workflows and integrated database solutions that 
-            empower organizations with data-driven decision-making capabilities."
-          </p>
-          <div class="hero-actions">
-            <a class="btn primary" href="#projects">View Projects</a>
-            <a class="btn ghost" href="#contact">Let’s Connect</a>
-          </div>
-        </div>
-        <div class="profile-card">
-          <div class="profile-photo-wrap">
-            <img class="profile-photo" id="profilePhoto" src="assets/profile-photo.jpg" alt="Portrait of Janrome Bengco">
-            <div class="profile-photo-fallback" id="profileFallback" aria-hidden="true">JB</div>
-          </div>
-          <h3>Janrome Bengco</h3>
-          <p>BS Computer Science Student</p>
-        </div>
-      </div>
+    <section class="project-card" id="task1">
+      <h2>Analytics Midterm Task 1</h2>
+      <ul>
+        <li><a class="file-link" href="../Projects/Analytics%20Midterm%20Task%201/Bike%20Sales_Prepare_Lab%203.4.7_fixed..xlsx" target="_blank" rel="noopener">Bike Sales Prepare Workbook (.xlsx)</a></li>
+        <li><a class="file-link" href="../Projects/Analytics%20Midterm%20Task%201/Data_Model.png" target="_blank" rel="noopener">Data Model Image (.png)</a></li>
+      </ul>
     </section>
 
-    <section id="about" class="section">
-      <div class="container">
-        <h2>About Me</h2>
-        <p>
-          I’m a passionate software engineer deeply dedicated to data-centric solutions. 
-          I thrive on architecting scalable data pipelines and building robust database systems, 
-          transforming raw datasets into powerful, actionable business intelligence that drives 
-          meaningful growth and strategic decision-making.
-        </p>
-      </div>
+    <section class="project-card" id="task2">
+      <h2>Analytics Midterm Task 2</h2>
+      <ul>
+        <li><a class="file-link" href="../Projects/Analytics%20Midterm%20Task%202/Bengco%20Janrome_Midterm%20Task%202.%20Data%20Analysis%20using%20Pivot%20Table.xlsx" target="_blank" rel="noopener">Data Analysis using Pivot Table (.xlsx)</a></li>
+      </ul>
     </section>
 
-    <section id="education" class="section education-section">
-      <div class="container">
-        <h2>Education</h2>
-        <div class="timeline">
-          <article class="timeline-item">
-            <h3>Degree</h3>
-            <p class="timeline-school">Currently enrolled in City College of Angeles</p>
-            <ul class="achievement-list">
-              <li>Dean's Lister (1st - 2nd year)</li>
-              <li>1st Placer in BITS AND PC</li>
-            </ul>
-          </article>
-          <article class="timeline-item">
-            <h3>Senior High School</h3>
-            <p class="timeline-school">System Plus College Foundation</p>
-            <ul class="achievement-list">
-              <li>With High Honors (Grade 11 and 12)</li>
-              <li>Ranked in the top 100 during our batch</li>
-            </ul>
-          </article>
-          <article class="timeline-item">
-            <h3>Junior High School</h3>
-            <p class="timeline-school">With Honor (Grade 8-10)</p>
-            <ul class="achievement-list">
-              <li>1st Placer in Science Hamon</li>
-              <li>2nd Placer in Math Trial</li>
-            </ul>
-          </article>
-        </div>
-      </div>
+    <section class="project-card" id="task3">
+      <h2>Analytics Midterm Task 3</h2>
+      <ul>
+        <li><a class="file-link" href="../Projects/Analytics%20Midterm%20Task%203/Student_Record%20Clean.xlsx" target="_blank" rel="noopener">Student Record Clean (.xlsx)</a></li>
+        <li><a class="file-link" href="../Projects/Analytics%20Midterm%20Task%203/Student_Record_Data_Model.PNG" target="_blank" rel="noopener">Student Record Data Model (.png)</a></li>
+        <li><a class="file-link" href="../Projects/Analytics%20Midterm%20Task%203/Query%20-%20Student_Flat_Data%20reference.odc">Query Reference (.odc)</a></li>
+      </ul>
     </section>
 
-    <section id="projects" class="section">
-      <div class="container">
-        <h2>Projects</h2>
-        <p class="section-intro">Selected activities from my Enterprise Data Management coursework.</p>
-        <div class="project-grid">
-          <article class="card">
-            <h3>Analytics Midterm Task 1</h3>
-            <p>Excel data cleaning and preparation outputs for midterm submission.</p>
-            <div class="card-actions">
-              <a class="card-link" href="./project.html#midterm1" target="_blank" rel="noopener">View Project</a>
-              <a href="./analytics-midterm-task-1.zip" class="download-link" download="analytics-midterm-task-1.zip">Download File</a>
-            </div>
-          </article>
-          <article class="card">
-            <h3>Analytics Midterm Task 2</h3>
-            <p>Data analysis using Pivot Table and structured workbook reporting.</p>
-            <div class="card-actions">
-              <a class="card-link" href="./project.html#midterm2" target="_blank" rel="noopener">View Project</a>
-              <a href="./analytics-midterm-task-2.zip" class="download-link" download="analytics-midterm-task-2.zip">Download File</a>
-            </div>
-          </article>
-          <article class="card">
-            <h3>Analytics Midterm Task 3</h3>
-            <p>Dashboard and model files for cleaned student record analytics.</p>
-            <div class="card-actions">
-              <a class="card-link" href="./project.html#midterm3" target="_blank" rel="noopener">View Project</a>
-              <a href="./analytics-midterm-task-3.zip" class="download-link" download="analytics-midterm-task-3.zip">Download File</a>
-            </div>
-          </article>
-          <article class="card">
-            <h3>Inventory Management System</h3>
-            <p>Project files and documentation for inventory management solution.</p>
-            <div class="card-actions">
-              <a class="card-link" href="./project.html#inventory" target="_blank" rel="noopener">View Project</a>
-              <a href="./inventory-management-system.zip" class="download-link" download="inventory-management-system.zip">Download File</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3>Analytics Finals Task 1</h3>
-            <p>SQL scripts and supporting screenshots for Finals Task 1.</p>
-            <div class="card-actions">
-              <a class="card-link" href="./project.html#final1" target="_blank" rel="noopener">View Project</a>
-              <a href="./analytics-finals-task-1.zip" class="download-link" download="analytics-finals-task-1.zip">Download File</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3>Analytics Finals Task 2</h3>
-            <p>Power BI report, datasets, and documentation for Finals Task 2.</p>
-            <div class="card-actions">
-              <a class="card-link" href="./project.html#final2" target="_blank" rel="noopener">View Project</a>
-              <a href="./analytics-finals-task-2.zip" class="download-link" download="analytics-finals-task-2.zip">Download File</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3>Analytics Finals Task 3</h3>
-            <p>Power BI sales analysis report and screenshot for Finals Task 3.</p>
-            <div class="card-actions">
-              <a class="card-link" href="./project.html#final3" target="_blank" rel="noopener">View Project</a>
-              <a href="./analytics-finals-task-3.zip" class="download-link" download="analytics-finals-task-3.zip">Download File</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3>Analytics Finals Task 4</h3>
-            <p>Performance visuals and Power BI report for Finals Task 4.</p>
-            <div class="card-actions">
-              <a class="card-link" href="./project.html#final4" target="_blank" rel="noopener">View Project</a>
-              <a href="./analytics-finals-task-4.zip" class="download-link" download="analytics-finals-task-4.zip">Download File</a>
-            </div>
-          </article>
-        </div>
-      </div>
+    <section class="project-card" id="inventory">
+      <h2>Inventory Management System</h2>
+      <ul>
+        <li><a class="file-link" href="../project/downloads/inventory-management-system.zip" target="_blank" rel="noopener">Inventory Management System (.zip)</a></li>
+      </ul>
     </section>
+  </div>
+  <script>
+    (function () {
+      const validIds = ["task1", "task2", "task3", "inventory"];
+      const selected = window.location.hash.replace("#", "");
+      if (!validIds.includes(selected)) return;
 
-    <section id="contact" class="section alt">
-      <div class="container contact-box">
-        <h2>Contact</h2>
-        <p>Interested in collaborating or sharing opportunities? I’d love to connect.</p>
-        <a class="btn primary" href="mailto:janromebengco@gmail.com">Email Me</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>© <span id="year"></span> JCB | Software Engineer</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+      const cards = document.querySelectorAll(".project-card");
+      cards.forEach((card) => {
+        card.classList.toggle("hidden", card.id !== selected);
+      });
+    })();
+  </script>
 </body>
 </html>
